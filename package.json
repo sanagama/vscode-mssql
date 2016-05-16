@@ -11,7 +11,7 @@
   },
 
 	"license": "SEE LICENSE IN LICENSE.txt",
-  "icon": "sqlserver.png",
+  "icon": "images/sqlserver.png",
 
   "galleryBanner": {
     "color": "#CFB69A",
@@ -39,7 +39,7 @@
   ],
 
   "keywords": [
-    "SQL", "SQL Azure", "SQL Server", "Azure SQL Database", "Azure SQL Datawarehouse"
+    "SQL", "SQL Azure", "SQL Server", "Azure SQL Database", "Azure SQL Data Warehouse"
   ],
 
   "activationEvents": [ "*" ],
@@ -147,7 +147,6 @@
   },
 
   "scripts": {
-    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
     "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install"
   }
