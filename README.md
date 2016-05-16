@@ -1,4 +1,4 @@
-# Microsoft SQL Server support in Visual Studio Code
+# Microsoft SQL Server support in VS Code
 
 ## What is it?
 This extension is a proof of concept that adds MSSQL support to Visual Studio Code and let's you:
