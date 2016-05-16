@@ -1,0 +1,154 @@
+{
+  "name": "vscode-mssql",
+  "version": "0.0.2",
+  "displayname": "MSSQL support in VS Code",
+  "description": "Connect to SQL Server and Azure SQL databases, run T-SQL queries and see results in a grid.",
+  "publisher": "sanagama",
+
+  "author": {
+    "name": "Sanjay Nagamangalam",
+    "email": "sanagama2@gmail.com"
+  },
+
+	"license": "SEE LICENSE IN LICENSE.txt",
+  "icon": "sqlserver.png",
+
+  "galleryBanner": {
+    "color": "#CFB69A",
+    "theme": "light"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanagama/vscode-mssql.git"
+  },
+
+  "bugs": {
+        "url": "https://github.com/sanagama/vscode-mssql/issues",
+        "email": "sanagama2@gmail.com"
+    },
+
+  "homepage": "https://github.com/sanagama/vscode-mssql/blob/master/README.md",
+
+  "engines": {
+      "vscode": "^1.0.0"
+  },
+
+  "categories": [
+    "Languages"
+  ],
+
+  "keywords": [
+    "SQL", "SQL Azure", "SQL Server", "Azure SQL Database", "Azure SQL Datawarehouse"
+  ],
+
+  "activationEvents": [ "*" ],
+
+  "main": "./out/src/extension",
+  "extensionDependencies": [
+    "vscode.sql"
+  ],
+
+  "devDependencies": {
+      "typescript": "^1.8.9",
+      "vscode": "^0.11.0"
+   },
+
+  "dependencies": {
+    "async": "^2.0.0-rc.3",
+    "mssql": "^3.2.0",
+    "express": "^4.13.3"
+  },
+
+  "contributes":
+  {
+    "languages": [
+      {
+        "id": "sql",
+        "extensions": [
+          ".sql"
+        ],
+        "aliases": [
+          "SQL"
+        ],
+        "configuration": "./syntaxes/sql.configuration.json"
+      }
+    ],
+
+    "grammars": [
+      {
+        "language": "sql",
+        "scopeName": "source.sql",
+        "path": "./syntaxes/SQL.plist"
+      }
+    ],
+
+    "outputChannels": [
+      "MSSQL"
+    ],
+
+    "snippets": [
+      {
+        "language": "sql",
+        "path": "./snippets/mssql.json"
+      }
+    ],
+
+    "commands": [
+      {
+        "command": "extension.runQuery",
+        "title": "Run T-SQL query",
+        "category": "MSSQL"
+      },
+      {
+        "command": "extension.connect",
+        "title": "Connect to a database",
+        "category": "MSSQL"
+      },
+      {
+        "command": "extension.disconnect",
+        "title": "Disconnect active connection",
+        "category": "MSSQL"
+      }
+    ],
+
+    "keybindings": [
+      {
+        "command": "extension.runQuery",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e",
+        "when": "editorTextFocus && editorLangId == 'sql'"
+      },
+      {
+        "command": "extension.connect",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus && editorLangId == 'sql'"
+      },
+      {
+        "command": "extension.disconnect",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d",
+        "when": "editorTextFocus && editorLangId == 'sql'"
+      }
+    ],
+
+    "configuration": {
+      "type": "object",
+      "title": "MSSQL configuration",
+      "properties": {
+          "mssqlserver.logDebugInfo": {
+          "type": "boolean",
+          "default": false,
+          "description": "Log debug output to MSSQL output pane."
+        }
+      }
+    }
+  },
+
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  }
+}
