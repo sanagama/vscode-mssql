@@ -9,6 +9,9 @@ This extension is a proof of concept that adds MSSQL support to Visual Studio Co
 
 Head over to [Github](https://github.com/sanagama/vscode-mssql) for the source code, bug tracking, and feature requests.
 
+##Screenshots
+![IDE](images/vscode-mssql-demo.gif)
+
 ## Supported features
 * Get started with T-SQL Snippets
 * Execute T-SQL scripts (selected T-SQL text vs. everything in the editor)
@@ -19,9 +22,6 @@ Head over to [Github](https://github.com/sanagama/vscode-mssql) for the source c
 * Paginated results
 * Basic T-SQL keyword colorization
 * Remember recently used connections
-
-##Screenshots
-![IDE](images/vscode-mssql-demo.gif)
 
 ##Usage
 First, download and install Visual Studio Code `1.0` (or later) for your platform from here: [download Visual Studio Code](https://code.visualstudio.com/#alt-downloads)
@@ -69,4 +69,4 @@ The extension uses several open source components including:
 Thanks to [GIPHY](http://giphy.com/) for the animated GIF ;-)
 
 ## License
-[MIT](LICENSE)
+[MIT](LICENSE.txt)
