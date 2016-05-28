@@ -64,8 +64,6 @@ export default class MainController implements vscode.Disposable {
         let registration = vscode.workspace.registerTextDocumentContentProvider(SqlOutputContentProvider.providerName, self._outputContentProvider);
         this._context.subscriptions.push(registration);
 
-        Utils.logToOutputChannel(Constants.gExtensionName + Constants.gExtensionActivated);
-        Utils.logToOutputChannel(Constants.gIntroMessages);
         Utils.logDebug(Constants.gExtensionActivated);
     }
 
@@ -81,6 +79,7 @@ export default class MainController implements vscode.Disposable {
         if(!Utils.isEditingSqlFile())
         {
             Utils.showWarnMsg(Constants.gMsgOpenSqlFile);
+            Utils.logToOutputChannel(Constants.gMsgOpenSqlFileLong);
             return;
         }
         else
@@ -95,6 +94,7 @@ export default class MainController implements vscode.Disposable {
         if(!Utils.isEditingSqlFile())
         {
             Utils.showWarnMsg(Constants.gMsgOpenSqlFile);
+            Utils.logToOutputChannel(Constants.gMsgOpenSqlFileLong);
         }
         else
         {

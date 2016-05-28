@@ -47,22 +47,13 @@ function initializeEvents()
     $('#' + gNavTabsId).on('shown.bs.tab', $('a[data-toggle="tab"]'), function(e) {
         var currentTabHref = $(e.target).attr('href'); // get current tab href
         var previousTabHref = $(e.relatedTarget).attr('href'); // get previous tab href
-        logStatus('after show currentTab href = ' + currentTabHref);
-        logStatus('after show previousTab href = ' + previousTabHref);
-
         if(currentTabHref == '#tabMessages')
         {
-            logStatus('after show tabMessages');
             renderSqlMessages(gMessagesUrl, gMessagesContainerId);
         }
         else if(currentTabHref == '#tabResultset')
         {
-            logStatus('after show tabResults');
             renderSqlResultset();
-        }
-        else
-        {
-            logStatus('unknown tab - doing nothing');
         }
     });
 }
@@ -111,9 +102,9 @@ function getResultsMetadataCollection(metadataUrl)
         <ul class="dropdown-menu" id="multipleResultsetDropdownMenu" role="menu" aria-labelledby="multipleResultsetDropdown">
             <li><a href="#tabResultset" data-toggle="tab" resultset="0">Results 1</a></li>
             <li><a href="#tabResultset" data-toggle="tab" resultset="1">Results 2</a></li>
-            <li><a href="#tabResultset" data-toggle="tab" resultset="2">Results 3</a></li> 
+            <li><a href="#tabResultset" data-toggle="tab" resultset="2">Results 3</a></li>
         </ul>
-    </li> 
+    </li>
     <li><a data-toggle="tab" href="#tabMessages">Messages</a></li>
 </ul>
 */
@@ -187,7 +178,7 @@ function renderSqlResultset()
     logStatus('renderSqlResultset called');
     var resultsetIndex = $("#multipleResultsetDropdownMenu li.active").find("a").attr("resultset");
     logStatus('chosen resultset = ' + resultsetIndex);
-    
+
     if(gResultsetsMetadataCollection.length > 0)
     {
         if(!resultsetIndex)
@@ -195,7 +186,7 @@ function renderSqlResultset()
             logStatus('resultsetIndex is undefined, resultset metadata collection size should be 1, actual = ' + gResultsetsMetadataCollection.length);
             resultsetIndex = 0;
         }
-        
+
         var resultset = gResultsetsMetadataCollection.at(resultsetIndex).toJSON();
         var columnsUri = resultset.columnsUri;
         var rowsUri = resultset.rowsUri;
@@ -208,7 +199,7 @@ function renderSqlResultset()
     }
     else
     {
-        logStatus('renderSqlResultset called when there were 0 resultsets - bug!');
+        logStatus('renderSqlResultset called when there were 0 resultsets - send mail to sanagama2@gmail.com for a repro.');
     }
 }
 
@@ -231,7 +222,7 @@ function getRowsCollection(rowsUri)
         mode: "client",
         state: {
             pageSize: gResultsgridRowsPerPage // show 50 rows at a time
-        }        
+        }
     });
     return new rowsCollection();
 }
@@ -256,7 +247,7 @@ function createGrid(gridContainerId, columnsCollection, rowsCollection)
             windowSize: gPaginatorWindowSize,
             goBackFirstOnSort: false, // don't go back to the first page after sorting
             collection: rowsCollection
-        }); 
+        });
 
         // create client-side full-text filter
         var filter = grid.filter = new Backgrid.Extension.ClientSideFilter({
@@ -268,7 +259,7 @@ function createGrid(gridContainerId, columnsCollection, rowsCollection)
 
         // clear out existing contents of target <div>
         $(gridContainerId).empty();
-        
+
         // render the filter
         var $filterContainer = $("<div id='filter-container'></div>").appendTo($(gridContainerId));
         $filterContainer.append(filter.render().el);
@@ -285,7 +276,7 @@ function createGrid(gridContainerId, columnsCollection, rowsCollection)
 
         // render the grid and attach the root to <div> in HTML document
         $(gridContainerId).append(grid.render().el);
-        
+
         // fetch rows
         rowsCollection.fetch({reset: true});
     });
