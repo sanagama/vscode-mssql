@@ -4,7 +4,7 @@ import Constants = require('../models/constants');
 import Utils = require('../models/utils');
 import { RecentConnections } from '../models/recentConnections';
 import Interfaces = require('../models/interfaces');
-import ConnectionUI from '../views/connectionUI'
+import { ConnectionUI } from '../views/connectionUI'
 import StatusView from '../views/statusView';
 
 var mssql = require('mssql');
@@ -15,16 +15,13 @@ export default class ConnectionManager
     private _statusView: StatusView;
     private _connection;
     private _connectionCreds: Interfaces.IConnectionCredentials;
-    private _recentConnections: RecentConnections;
+    private _connectionUI: ConnectionUI;
 
     constructor(context: vscode.ExtensionContext, statusView: StatusView)
     {
         this._context = context;
         this._statusView = statusView;
-
-        // Init recent connections MRU
-        this._recentConnections = new RecentConnections(this._context);
-        this._recentConnections.clear();
+        this._connectionUI = new ConnectionUI();
     }
 
     get connectionCredentials(): Interfaces.IConnectionCredentials {
@@ -35,6 +32,10 @@ export default class ConnectionManager
         return this._connection;
     }
 
+    private get connectionUI() {
+        return this._connectionUI;
+    }
+
     private get statusView() {
         return this._statusView;
     }
@@ -43,32 +44,42 @@ export default class ConnectionManager
         return this._connection && this._connection.connected;
     }
 
+    // close active connection, if any
     public onDisconnect()
-    {
-        if(this.isConnected) {
-            this._connection.close();
-        }
-
-        this._connection = null;
-        this._connectionCreds = null;
-    }
-
-    // let users pick from a list of previous connections or enter credentials for a new database connection
-    public onNewConnection()
     {
         return new Promise<any>((resolve, reject) =>
         {
-            let self = this;
-            self.onDisconnect();
+            if(this.isConnected) {
+                this._connection.close();
+            }
 
-            ConnectionUI.showConnectionList(self._recentConnections)
+            this._connection = null;
+            this._connectionCreds = null;
+            this.statusView.notConnected();
+            resolve(true);
+        });
+    }
+
+    // let users pick from a picklist of connections
+    public onNewConnection()
+    {
+        const self = this;
+        return new Promise<boolean>((resolve, reject) =>
+        {
+            // show connection picklist
+            self.connectionUI.showConnections()
             .then(function(connectionCreds)
             {
-                self.connect(connectionCreds)
-                .then(function() {
-                    self._recentConnections.add(connectionCreds);
-                    resolve();
-                })
+                // close active connection
+                self.onDisconnect().then(function()
+                {
+                    // connect to the server/database
+                    self.connect(connectionCreds)
+                    .then(function()
+                    {
+                        resolve(true);
+                    });
+                });
             });
         });
     }
@@ -76,9 +87,9 @@ export default class ConnectionManager
     // create a new connection with the connectionCreds provided
     public connect(connectionCreds: Interfaces.IConnectionCredentials)
     {
+        const self = this;
         return new Promise<any>((resolve, reject) =>
         {
-            let self = this;
             const connection = new mssql.Connection(connectionCreds);
             self.statusView.connecting(connectionCreds);
             connection.connect()
@@ -89,7 +100,7 @@ export default class ConnectionManager
                 resolve();
             })
             .catch(function(err) {
-                self._statusView.connectError(connectionCreds, err);
+                self.statusView.connectError(connectionCreds, err);
                 Utils.showErrorMsg(Constants.gMsgError + err);
                 reject(err);
             });

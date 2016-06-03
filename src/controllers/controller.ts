@@ -67,25 +67,16 @@ export default class MainController implements vscode.Disposable {
         Utils.logDebug(Constants.gExtensionActivated);
     }
 
+    // Close active connection, if any
     private onDisconnect()
     {
-        this._connectionMgr.onDisconnect();
-        this._statusview.notConnected();
+        return this._connectionMgr.onDisconnect();
     }
 
-    // Let users pick from a list of previous connections or provide credentials to create a new database connection
+    // Let users pick from a list of connections
     public onNewConnection()
     {
-        if(!Utils.isEditingSqlFile())
-        {
-            Utils.showWarnMsg(Constants.gMsgOpenSqlFile);
-            Utils.logToOutputChannel(Constants.gMsgOpenSqlFileLong);
-            return;
-        }
-        else
-        {
-            return this._connectionMgr.onNewConnection();
-        }
+        return this._connectionMgr.onNewConnection();
     }
 
     // get the T-SQL query from the editor, run it and show output
@@ -94,7 +85,6 @@ export default class MainController implements vscode.Disposable {
         if(!Utils.isEditingSqlFile())
         {
             Utils.showWarnMsg(Constants.gMsgOpenSqlFile);
-            Utils.logToOutputChannel(Constants.gMsgOpenSqlFileLong);
         }
         else
         {

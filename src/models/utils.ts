@@ -48,9 +48,9 @@ export function logToOutputChannel(msg: any)
 // Helper to log debug messages
 export function logDebug(msg: any)
 {
-    let config = vscode.workspace.getConfiguration(Constants.gConfigSectionName);
+    let config = vscode.workspace.getConfiguration(Constants.gExtensionName);
     let logDebugInfo = config[Constants.gConfigLogDebugInfo];
-    if(logDebugInfo)
+    if(logDebugInfo == true)
     {
         let currentTime = new Date().toLocaleTimeString();
         let outputMsg = "[" + currentTime + "]: " + msg ? msg.toString() : "";
@@ -61,17 +61,17 @@ export function logDebug(msg: any)
 // Helper to show an info message
 export function showInfoMsg(msg: string)
 {
-    vscode.window.showInformationMessage(Constants.gExtensionName + msg );
+    vscode.window.showInformationMessage(Constants.gExtensionName + ": " + msg );
 }
 
 // Helper to show an warn message
 export function showWarnMsg(msg: string)
 {
-    vscode.window.showWarningMessage(Constants.gExtensionName + msg );
+    vscode.window.showWarningMessage(Constants.gExtensionName + ": " + msg );
 }
 
 // Helper to show an error message
 export function showErrorMsg(msg: string)
 {
-    vscode.window.showErrorMessage(Constants.gExtensionName + msg );
+    vscode.window.showErrorMessage(Constants.gExtensionName + ": " + msg );
 }

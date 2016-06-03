@@ -1,7 +1,6 @@
 // constants
 export const gLanguageId = "sql";
-export const gExtensionName = "vscode-mssql: ";
-export const gConnectionAppName = "vscode-mssql-node-mssql";
+export const gExtensionName = "vscode-mssql";
 export const gOutputChannelName = "MSSQL";
 
 export const gCmdRunQuery = 'extension.runQuery';
@@ -15,20 +14,20 @@ export const gAzureSqlDbConnectionTimeout = 30000;
 export const gAzureSqlDbRequestTimeout = 30000;
 export const gAzureDatabase = "Azure";
 
-export const gGlobalState_recentConnections = "mssql.recentConnections";
-
 export const gOutputContentTypeRoot = '/';
 export const gOutputContentTypeMessages = "messages";
 export const gOutputContentTypeResultsetMeta = 'resultsetsMeta';
 export const gOutputContentTypeColumns = 'columns'
 export const gOutputContentTypeRows = 'rows'
 export const gOutputServiceLocalhost = "http://localhost:";
-
 export const gMsgContentProviderSqlOutputHtml = 'sqlOutput.html';
-export const gConfigSectionName = "mssqlserver";
-export const gConfigLogDebugInfo = "'logDebugInfo";
+
+export const gConfigLogDebugInfo = "logDebugInfo";
+export const gConfigMyConnections = "connections";
 
 // localizable strings
+export const gConfigMyConnectionsNoServerName = "Missing server name in user preferences connection: ";
+
 export const gMsgLocalWebserviceStaticContent = "LocalWebService: added static html content path: ";
 export const gMsgLocalWebserviceStarted = 'LocalWebService listening on port ';
 export const gMsgRunQueryAllBatchesExecuted = 'runQuery: all batches executed';
@@ -52,25 +51,17 @@ export const gMsgContentProviderProvideContent = 'Content provider: provideTextD
 
 export const gExtensionActivated = "activated.";
 export const gExtensionDeactivated = "de-activated.";
-export const gMsgOpenSqlFile = "Open a .sql file in the active editor to use this command.";
+export const gMsgOpenSqlFile = "To use this command, Open a .sql file -or- Change editor language to 'SQL' -or- Select some T-SQL text in the active SQL editor.";
 
-export const gMsgOpenSqlFileLong = new Array(
-                                "Open a .sql file in the active editor to use this command. Try one of the following:",
-                                "1. If you're starting with a new empty file then press 'Ctrl+K M' to select the language mode and choose 'SQL'",
-                                "2. Press 'File...Open' to open a .sql file from your computer in the editor",
-                                "3. Click inside the editor with your SQL statements to make it the active editor that has focus"
-                            );
-
-export const gActiveTextEditorChanged = "Active text editor changed. LanguageId = ";
-
-export const gNewConnectionLabel = "New connection...";
-export const gNewConnectionDescription = "Create a new database connection.";
-export const gNewOrRecentConnectionPlaceholder = "Create a new connection or choose a recent connection";
+export const gRecentConnectionsPlaceholder = "Choose a connection from the list below";
+export const gMsgNoConnectionsInSettings = "To use this command, add connection information to VS Code User or Workspace settings.";
+export const gLabelOpenGlobalSettings = "Open Global Settings";
+export const gLabelOpenWorkspaceSettings = "Open Workspace Settings";
 
 export const gServerPrompt = "Server name";
 export const gServerPlaceholder = "hostname\\instance or <server>.database.windows.net";
 export const gDatabasePrompt = "Database name";
-export const gDatabasePlaceholder = "database name (defaults to 'master' if empty)";
+export const gDatabasePlaceholder = "optional database to connect to (default depends on server configuration, typically 'master')";
 export const gUsernamePrompt = "Username";
 export const gUsernamePlaceholder = "username (SQL Authentication)";
 export const gPasswordPrompt = "Password";

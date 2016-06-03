@@ -25,7 +25,7 @@ function logStatus(msg)
 {
     //$('#log').append(msg);
     //$('#log').append("<br>");
-    console.log(msg);
+    //console.log(msg);
 }
 
 $(document).ready(function() {

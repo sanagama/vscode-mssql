@@ -136,11 +136,97 @@
     "configuration": {
       "type": "object",
       "title": "MSSQL configuration",
-      "properties": {
-          "mssqlserver.logDebugInfo": {
+      "properties":
+      {
+        "vscode-mssql.logDebugInfo":
+        {
           "type": "boolean",
           "default": false,
-          "description": "Log debug output to MSSQL output pane."
+          "description": "[Optional] Log debug output to the VS Code console (Help -> Toggle Developer Tools)"
+        },
+
+        "vscode-mssql.connections":
+        {
+          "type": "array",
+          "default":
+          [
+            {
+              "server": "{{put-server-name-here}}",
+              "database": "{{put-database-name-here}}",
+              "user": "{{put-username-here}}",
+              "password": "{{put-password-here}}"
+            }
+          ],
+          "description": "Connections placed here are shown in the connections picklist across VS Code sessions.",
+          "items":
+          {
+            "type": "object",
+            "properties":
+            {
+              "server":
+              {
+                "type": "string",
+                "default": "{{put-server-name-here}}",
+                "description": "[Required] Server to connect to. Use 'hostname\\instance' or '<server>.database.windows.net'."
+              },
+
+              "database":
+              {
+                "type": "string",
+                "default": "{{put-database-name-here}}",
+                "description": "[Optional] Database to connect to. If this is empty, default depends on server configuration, typically 'master'."
+              },
+
+              "user":
+              {
+                "type": "string",
+                "default": "{{put-username-here}}",
+                "description": "[Optional] User name for SQL authentication. If this is empty, you are prompted when you connect."
+              },
+
+              "password":
+              {
+                "type": "string",
+                "default": "{{put-password-here}}",
+                "description": "[Optional] Password for SQL authentication. If this is empty, you are prompted when you connect."
+              },
+
+              "connectionTimeout":
+              {
+                "type": "number",
+                "default": 15000,
+                "description": "[Optional] Connection timeout in milliseconds. Default is 30000 ms for Azure SQL DB and 15000 ms otherwise."
+              },
+
+              "requestTimeout":
+              {
+                "type": "number",
+                "default": 15000,
+                "description": "[Optional] Request timeout in milliseconds. Default is 30000 ms for Azure SQL DB and 15000 ms otherwise."
+              },
+
+              "options":
+              {
+                "type": "object",
+                "properties":
+                {
+                  "encrypt":
+                  {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "[Optional] Specify if the connection will be encrypted. Always set to 'true' for Azure SQL DB and loaded from here otherwise."
+                  },
+
+                  "appName":
+                  {
+                    "type": "string",
+                    "default": "vscode-mssql",
+                    "description": "[Optional] Application name used for SQL server logging (default: 'vscode-mssql')."
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

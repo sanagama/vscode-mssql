@@ -61,7 +61,7 @@ export default class StatusView implements vscode.Disposable
     {
         this.createStatusBar();
         this._statusConnection.command = null;
-        this._statusConnection.tooltip = Constants.gConnectingTooltip + ConnInfo.getDisplayLabel(connCreds);
+        this._statusConnection.tooltip = Constants.gConnectingTooltip + ConnInfo.getTooltip(connCreds);
         this._statusConnection.show();
         this.showProgress(Constants.gConnectingLabel, this._statusConnection);
     }
@@ -70,8 +70,8 @@ export default class StatusView implements vscode.Disposable
     {
         this.createStatusBar();
         this._statusConnection.command = Constants.gCmdConnect;
-        this._statusConnection.text = ConnInfo.getDisplayLabel(connCreds);
-        this._statusConnection.tooltip = ConnInfo.getDisplayDescription(connCreds);
+        this._statusConnection.text = connCreds.server;
+        this._statusConnection.tooltip = ConnInfo.getTooltip(connCreds);
         this._statusConnection.show();
     }
 
@@ -80,7 +80,7 @@ export default class StatusView implements vscode.Disposable
         this.createStatusBar();
         this._statusConnection.command = Constants.gCmdConnect;
         this._statusConnection.text = Constants.gConnectErrorLabel;
-        this._statusConnection.tooltip = Constants.gConnectErrorTooltip + ConnInfo.getDisplayLabel(connCreds) + "\n" +
+        this._statusConnection.tooltip = Constants.gConnectErrorTooltip + connCreds.server + "\n" +
                                       Constants.gConnectErrorCode + error.code + "\n" +
                                       Constants.gConnectErrorMessage + error.message;
         this._statusConnection.show();
