@@ -74,7 +74,7 @@ The command `MSSQL: Connect to a database` loads these connections, shows them i
         },
         {
             // connection 2
-            // Password is not present. You are prompted for a password when you choose this connection from the picklist.
+            // Password is not present. You are prompted for a password when you choose this connection.
             // Database is not present. Default depends on server configuration, typically 'master'.
             "server": "mytestserver2.database.windows.net",
             "user": "sanagama"
@@ -100,7 +100,8 @@ in workspace settings (`File->Preferences->Workspace Settings`).
             // [Required] Server to connect to. Use 'hostname\\instance' or '<server>.database.windows.net'.
             "server": "put-server-name-here",
 
-            // [Optional] Database to connect to. If this is empty, default depends on server configuration, typically 'master'.
+            // [Optional] Database to connect to.
+            // If this is empty, default depends on server configuration, typically 'master'.
             "database": "put-database-name-here",
 
             // [Required] User name for SQL authentication. If this is empty, you are prompted when you connect.
@@ -111,16 +112,19 @@ in workspace settings (`File->Preferences->Workspace Settings`).
 
             // Below are more optional settings in case you wish to override them
 
-            // [Optional] Connection timeout in milliseconds. Default is 30000 ms for Azure SQL DB and 15000 ms otherwise.
+            // [Optional] Connection timeout in milliseconds.
+            // Default is 30000 ms for Azure SQL DB and 15000 ms otherwise.
             "connectionTimeout": 15000,
 
-            // [Optional] Request timeout in milliseconds. Default is 30000 ms for Azure SQL DB and 15000 ms otherwise.
+            // [Optional] Request timeout in milliseconds.
+            // Default is 30000 ms for Azure SQL DB and 15000 ms otherwise.
             "requestTimeout": 15000,
 
             // Additional advanced options
             "options":
             {
-                // [Optional] Specify if the connection will be encrypted. Always set to 'true' for Azure SQL DB and loaded from here otherwise.
+                // [Optional] Specify if the connection will be encrypted.
+                // Always 'true' for Azure SQL DB and loaded from settings otherwise.
                 "encrypt": false,
 
                 // [Optional] Application name used for SQL server logging (default: 'vscode-mssql').
