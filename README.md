@@ -13,12 +13,12 @@ Head over to [Github](https://github.com/sanagama/vscode-mssql) for the source c
 ![IDE](images/vscode-mssql-demo.gif)
 
 ##Supported features
-* Put your connections in VS Code user settings or workspace settings
+* Loads your connections from [VS Code User or Workspace settings](https://code.visualstudio.com/Docs/customization/userandworkspace)
 * Get started with T-SQL Snippets
 * Execute T-SQL scripts (selected T-SQL text vs. everything in the editor)
 * Execute multiple batches (simple `GO` parsing)
 * View and navigate multiple result sets
-* View messages from SQL Server
+* View errors and messages from SQL Server
 * Search for text in results
 * Paginated results
 * Basic T-SQL keyword colorization
@@ -54,7 +54,7 @@ The extension provides a few commands in the VS Code command palette:
 * `MSSQL: Disconnect active connection` - disconnects from the database
 
 ###Options
-Put your connections in VS Code user settings (`File->Preferences->User Settings`) or in workspace settings (`File->Preferences->Workspace Settings`) in the format below.
+Put your connections in VS Code User settings (`File->Preferences->User Settings`) or in Workspace settings (`File->Preferences->Workspace Settings`) in the format below.
 The command `MSSQL: Connect to a database` loads these connections, shows them in a picklist, and prompts you to enter any missing required information when you connect.
 
 >*Note:* Settings defined in Workspace scope overwrite settings defined in User scope, as documented [here](https://code.visualstudio.com/Docs/customization/userandworkspace)
@@ -74,8 +74,8 @@ The command `MSSQL: Connect to a database` loads these connections, shows them i
         },
         {
             // connection 2
-            // Password (required) is not present. You are prompted for a password when you choose this connection from the picklist.
-            // Database (optional) is not present. Default depends on server configuration, typically 'master'.
+            // Password is not present. You are prompted for a password when you choose this connection from the picklist.
+            // Database is not present. Default depends on server configuration, typically 'master'.
             "server": "mytestserver2.database.windows.net",
             "user": "sanagama"
         },
@@ -147,14 +147,14 @@ in workspace settings (`File->Preferences->Workspace Settings`).
 5. Restart Visual Studio Code when prompted
 
 ##ChangeLog
-###0.0.2:
+###Version 0.0.2:
 * initial commit
 
-###0.0.3:
+###Version 0.0.3:
 * stop showing welcome message in MSSQL output channel when extension loads
-* cleaned up various information messages
+* cleaned up various messages
 * enable commands *Connect to a database* and *Disconnect active connection* even when a .sql file is not open in an editor
-* load connections from VS Code user settings or workspace settings and show them in the connection picklist across VS Code sessions
+* load connections from VS Code User settings or Workspace settings and show them in the connection picklist across VS Code sessions
 
 ## Acknowledgements
 The extension uses several open source components including:
