@@ -23,6 +23,8 @@ Head over to [Github](https://github.com/sanagama/vscode-mssql) for the source c
 * Basic T-SQL keyword colorization
 * Put your connections in VS Code user settings or workspace settings to show them in the connection picklist across VS Code sessions
 
+>*Note:* Only SQL authentication is supported at this time. Windows Authentication is not yet supported.
+
 ##Usage
 First, download and install Visual Studio Code `1.0` (or later) for your platform from here: [download Visual Studio Code](https://code.visualstudio.com/#alt-downloads)
 
@@ -46,8 +48,6 @@ First, download and install Visual Studio Code `1.0` (or later) for your platfor
 
 >*Tip:* Put `GO` on a line by itself to separate T-SQL batches.
 
->*Tip:* Put connections you use frequently in VS Code user settings or workspace settings to show them in the connection picklist (see example below).
-
 ###Commands
 The extension provides a few commands in the command palette when working with MSSQL:
 * `MSSQL: Connect to a database` - prompts you for server, database, username and password and connects to a database. Remembers the connection in the list of recently used connections upon a successful connection.
@@ -67,6 +67,7 @@ These connections are shown in the connection picklist and you are prompted to e
     [
         {
             // connection 1
+            // You are not prompted for anything when you choose this connection from the picklist
             "server": "mytestserver1",
             "database": "mytestdatabase",
             "user": "sanagama",
@@ -74,7 +75,7 @@ These connections are shown in the connection picklist and you are prompted to e
         },
         {
             // connection 2
-            // You are prompted for a password since it is missing
+            // You are prompted for a password when you choose this connection from the picklist
             "server": "mytestserver2.database.windows.net",
             "user": "sanagama"
         },
