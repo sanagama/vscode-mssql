@@ -89,7 +89,7 @@ Below is the complete list of Visual Studio Code settings and their descriptions
 in workspace settings (`File->Preferences->Workspace Settings`).
 ```javascript
 {
-    // [Optional] Log debug output to the VS Code console (Help -> Toggle Developer Tools). Default value is 'false'.
+    // [Optional] Log debug output to the VS Code console (Help -> Toggle Developer Tools). Default is 'false'.
     "vscode-mssql.logDebugInfo": false,
 
     // Connections placed here are shown in the connections picklist across VS Code sessions.
