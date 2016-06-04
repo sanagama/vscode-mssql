@@ -13,6 +13,7 @@ Head over to [Github](https://github.com/sanagama/vscode-mssql) for the source c
 ![IDE](images/vscode-mssql-demo.gif)
 
 ##Supported features
+* Put your connections in VS Code user settings or workspace settings
 * Get started with T-SQL Snippets
 * Execute T-SQL scripts (selected T-SQL text vs. everything in the editor)
 * Execute multiple batches (simple `GO` parsing)
@@ -21,7 +22,6 @@ Head over to [Github](https://github.com/sanagama/vscode-mssql) for the source c
 * Search for text in results
 * Paginated results
 * Basic T-SQL keyword colorization
-* Put your connections in VS Code user settings or workspace settings to show them in the connection picklist across VS Code sessions
 
 >*Note:* Only SQL authentication is supported at this time. Windows Authentication is not yet supported.
 
@@ -37,37 +37,36 @@ First, download and install Visual Studio Code `1.0` (or later) for your platfor
 6. Restart Visual Studio Code when prompted
 
 ###Using the extension
-1. Launch Visual Studio Code
-2. *Add connections:* Open VS Code user settings (`File->Preferences->User Settings`) or workspace settings (`File->Preferences->Workspace Settings`) and add your connections (see `Options` below for format)
-3. *Change language mode to SQL:* Open a `.sql` file or press `Ctrl+K M` (`Cmd+K M` on Mac) switch the language mode of the active editor to `SQL`
-4. *Connect to a database:* Press `F1` to open the command palette, type `mssql` then click `Connect to a database` and follow the prompts
-5. *Use the T-SQL editor:* Type T-SQL statements in the editor. Type the word `sql` to see a list of code snippets you can tweak & reuse
-6. *Run T-SQL statements:* Select some T-SQL statements in the editor and press `Ctrl+Shift+e` (`Cmd+Shift+e` on Mac) to execute them and display results. The entire contents of the editor are executed if there is no selection.
+1. *Add connections:* Open VS Code User settings (`File->Preferences->User Settings`) or Workspace settings (`File->Preferences->Workspace Settings`) and add your connections (see `Options` below for format)
+2. *Change language mode to SQL:* Open a `.sql` file or press `Ctrl+K M` (`Cmd+K M` on Mac) switch the language mode of the active editor to `SQL`
+3. *Connect to a database:* Press `F1` to open the command palette, type `mssql` then click `Connect to a database` and follow the prompts
+4. *Use the T-SQL editor:* Type T-SQL statements in the editor. Type the word `sql` to see a list of code snippets you can tweak & reuse
+5. *Run T-SQL statements:* Select some T-SQL statements in the editor and press `Ctrl+Shift+e` (`Cmd+Shift+e` on Mac) to execute them and display results. The entire contents of the editor are executed if there is no selection.
 
 >*Tip:* Make sure that the editor with your T-SQL statements is the active editor with focus and its language mode is set to `SQL`. Select some T-SQL text in the editor and press `Ctrl+Shift+e` (`Cmd+Shift+e` on Mac) to execute the selection.
 
 >*Tip:* Put `GO` on a line by itself to separate T-SQL batches.
 
 ###Commands
-The extension provides a few commands in the command palette when working with MSSQL:
-* `MSSQL: Connect to a database` - prompts you for server, database, username and password and connects to a database. Remembers the connection in the list of recently used connections upon a successful connection.
+The extension provides a few commands in the VS Code command palette:
+* `MSSQL: Connect to a database` - loads your connections from user or workspace settings and shows them in a picklist for you to choose one. Also prompts you for any missing required information when you connect.
 * `MSSQL: Run T-SQL query` - executes T-SQL statements (selected T-SQL text vs. everything in the editor) and displays results
 * `MSSQL: Disconnect active connection` - disconnects from the database
 
 ###Options
-Put your connections in VS Code user settings (`File->Preferences->User Settings`) or in workspace settings (`File->Preferences->Workspace Settings`).
-These connections are shown in the connection picklist and you are prompted to enter any missing mandatory options when you connect.
+Put your connections in VS Code user settings (`File->Preferences->User Settings`) or in workspace settings (`File->Preferences->Workspace Settings`) in the format below.
+The command `MSSQL: Connect to a database` loads these connections, shows them in a picklist, and prompts you to enter any missing required information when you connect.
 
->*Note:* Settings defined in workspace scope overwrite settings defined in user scope, as documented [here](https://code.visualstudio.com/Docs/customization/userandworkspace)
+>*Note:* Settings defined in Workspace scope overwrite settings defined in User scope, as documented [here](https://code.visualstudio.com/Docs/customization/userandworkspace)
 
-*Here's a simple example with 2 connections. Both connections are shown in the picklist and you are prompted for a password each time you pick the second connection*:
+*Here's a simple example with 2 connections. Both connections are shown in the picklist and you are prompted for a password each time you choose the second connection*:
 ```javascript
 {
     "vscode-mssql.connections":
     [
         {
             // connection 1
-            // You are not prompted for anything when you choose this connection from the picklist
+            // All required inputs are present. No prompts when you choose this connection from the picklist.
             "server": "mytestserver1",
             "database": "mytestdatabase",
             "user": "sanagama",
@@ -75,12 +74,13 @@ These connections are shown in the connection picklist and you are prompted to e
         },
         {
             // connection 2
-            // You are prompted for a password when you choose this connection from the picklist
+            // Password (required) is not present. You are prompted for a password when you choose this connection from the picklist.
+            // Database (optional) is not present. Default depends on server configuration, typically 'master'.
             "server": "mytestserver2.database.windows.net",
             "user": "sanagama"
         },
         {
-            // more connections...
+            // more connections here...
         }
     ]
 }
@@ -103,10 +103,10 @@ in workspace settings (`File->Preferences->Workspace Settings`).
             // [Optional] Database to connect to. If this is empty, default depends on server configuration, typically 'master'.
             "database": "put-database-name-here",
 
-            // [Optional] User name for SQL authentication. If this is empty, you are prompted when you connect.
+            // [Required] User name for SQL authentication. If this is empty, you are prompted when you connect.
             "user": "put-username-here",
 
-            // [Optional] Password for SQL authentication. If this is empty, you are prompted when you connect.
+            // [Required] Password for SQL authentication. If this is empty, you are prompted when you connect.
             "password": "put-password-here",
 
             // Below are more optional settings in case you wish to override them
