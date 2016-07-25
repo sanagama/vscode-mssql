@@ -29,6 +29,10 @@ export function fixupConnectionCredentials(connCreds: Interfaces.IConnectionCred
         connCreds.requestTimeout = Constants.gDefaultRequestTimeout;
     }
 
+    if(!connCreds.port) {
+        connCreds.port = Constants.gDefaultTcpPort;
+    }
+
     // default values for advanced options
     if(!connCreds.options) {
         connCreds.options = {encrypt: false, appName: Constants.gExtensionName}
@@ -48,6 +52,9 @@ export function fixupConnectionCredentials(connCreds: Interfaces.IConnectionCred
     {
         // always encrypt connection if connecting to Azure SQL
         connCreds.options.encrypt = true;
+
+        // always use the default port (1433) if connecting to Azure SQL
+        connCreds.port = Constants.gDefaultTcpPort;
 
         // Ensure minumum connection timeout if connecting to Azure SQL
         if(connCreds.connectionTimeout < Constants.gAzureSqlDbConnectionTimeout) {
@@ -72,6 +79,7 @@ export function dump(connCreds: Interfaces.IConnectionCredentials): string {
                     " | database=" + (connCreds.database ? connCreds.database : "null") +
                     " | username=" + (connCreds.user ? connCreds.user : "null") +
                     " | encrypt=" + connCreds.options.encrypt +
+                    " | port=" + connCreds.port +
                     " | connectionTimeout=" + connCreds.connectionTimeout +
                     " | connectionTimeout=" + connCreds.requestTimeout;
     return contents;
@@ -84,6 +92,7 @@ export function equals(connCreds: Interfaces.IConnectionCredentials, theOther: I
                 (connCreds.database == theOther.database) &&
                 (connCreds.user == theOther.user) &&
                 (connCreds.options.encrypt == theOther.options.encrypt) &&
+                (connCreds.port == theOther.port) &&
                 (connCreds.connectionTimeout == theOther.connectionTimeout) &&
                 (connCreds.requestTimeout == theOther.requestTimeout);
     return equal;
@@ -106,6 +115,7 @@ export function getPicklistDetails(connCreds: Interfaces.IConnectionCredentials)
 {
     return "[" +
            "encrypt connection: " + (connCreds.options.encrypt ? "true" : "false") +
+           ", port: " + connCreds.port +
            ", connection timeout: " + connCreds.connectionTimeout + " ms" +
            ", request timeout: " + connCreds.requestTimeout + " ms" +
            "]";
@@ -117,6 +127,7 @@ export function getTooltip(connCreds: Interfaces.IConnectionCredentials): string
            "database: " + (connCreds.database ? connCreds.database : "<connection default>") + "\r\n" +
            "username: " + connCreds.user + "\r\n" +
            "encrypt connection: " + (connCreds.options.encrypt ? "true" : "false") + "\r\n" +
+           "port: " + connCreds.port + "\r\n" +
            "connection timeout: " + connCreds.connectionTimeout + " ms\r\n" +
            "request timeout: " + connCreds.requestTimeout + " ms\r\n" +
            "appName: " + connCreds.options.appName;

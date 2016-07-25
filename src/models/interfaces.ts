@@ -17,13 +17,16 @@ Constants.gOutputContentTypeColumns, Constants.gOutputContentTypeRows];
 
 // mssql.config wrapped into an interface for us to use more easily
 // Provided by the user when creating a new database connection
-// See this for more info: http://pekim.github.io/tedious/api-connection.html
+// See the links below for more info:
+//  https://github.com/patriksimek/node-mssql#configuration-1
+//  http://pekim.github.io/tedious/api-connection.html
 export interface IConnectionCredentials
 {
 	server: string;
 	database: string;
 	user: string;
 	password: string;
+	port: number;
 	connectionTimeout: number;
 	requestTimeout: number;
     options: { encrypt: boolean, appName: string }

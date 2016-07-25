@@ -112,6 +112,9 @@ in workspace settings (`File->Preferences->Workspace Settings`).
 
             // Below are more optional settings in case you wish to override them
 
+            // [Optional] Port to connect to. Default is 1433.
+            "port": 1433,
+
             // [Optional] Connection timeout in milliseconds.
             // Default is 30000 ms for Azure SQL DB and 15000 ms otherwise.
             "connectionTimeout": 15000,
@@ -159,6 +162,9 @@ in workspace settings (`File->Preferences->Workspace Settings`).
 * cleaned up various messages
 * enable commands *Connect to a database* and *Disconnect active connection* even when a .sql file is not open in an editor
 * load connections from VS Code User settings or Workspace settings and show them in the connection picklist across VS Code sessions
+
+###Version 0.0.4:
+* Addressed [Issue 6](https://github.com/sanagama/vscode-mssql/issues/6). Added option to specify port in connection settings.
 
 ## Acknowledgements
 The extension uses several open source components including:

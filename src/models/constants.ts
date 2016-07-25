@@ -8,11 +8,11 @@ export const gCmdConnect = 'extension.connect';
 export const gCmdDisconnect = 'extension.disconnect';
 
 export const gSqlDbPrefix = ".database.windows.net";
+export const gDefaultTcpPort = 1433;
 export const gDefaultConnectionTimeout = 15000;
 export const gDefaultRequestTimeout = 15000;
 export const gAzureSqlDbConnectionTimeout = 30000;
 export const gAzureSqlDbRequestTimeout = 30000;
-export const gAzureDatabase = "Azure";
 
 export const gOutputContentTypeRoot = '/';
 export const gOutputContentTypeMessages = "messages";
