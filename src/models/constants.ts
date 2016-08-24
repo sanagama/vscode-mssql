@@ -51,7 +51,6 @@ export const gMsgContentProviderProvideContent = 'Content provider: provideTextD
 
 export const gExtensionActivated = "activated.";
 export const gExtensionDeactivated = "de-activated.";
-export const gMsgOpenSqlFile = "To use this command, Open a .sql file -or- Change editor language to 'SQL' -or- Select some T-SQL text in the active SQL editor.";
 
 export const gRecentConnectionsPlaceholder = "Choose a connection from the list below";
 export const gMsgNoConnectionsInSettings = "To use this command, add connection information to VS Code User or Workspace settings.";
