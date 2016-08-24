@@ -82,15 +82,8 @@ export default class MainController implements vscode.Disposable {
     // get the T-SQL query from the editor, run it and show output
     public onRunQuery()
     {
-        if(!Utils.isEditingSqlFile())
-        {
-            Utils.showWarnMsg(Constants.gMsgOpenSqlFile);
-        }
-        else
-        {
-            const self = this;
-            let qr = new QueryRunner(self._connectionMgr, self._statusview, self._outputContentProvider);
-            qr.onRunQuery();
-        }
+        const self = this;
+        let qr = new QueryRunner(self._connectionMgr, self._statusview, self._outputContentProvider);
+        qr.onRunQuery();
     }
 }
