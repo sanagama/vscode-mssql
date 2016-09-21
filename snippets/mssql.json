@@ -248,5 +248,18 @@
 			"GO"
 		],
 		"description": "List databases"
+	},
+
+	"List columns":{
+		"prefix": "sql.listcolumns",
+		"body": [
+			"-- Get a list of columns for a specific table",
+			"-- Connect to the 'master' database to run this snippet",
+			"USE master",
+			"GO",
+			"SELECT name FROM sys.columns WHERE object_id = OBJECT_ID('${TableName}')",
+			"GO"
+		],
+		"description": "List columns for specific table"
 	}
 }
