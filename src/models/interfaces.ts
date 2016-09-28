@@ -19,11 +19,12 @@ Constants.gOutputContentTypeColumns, Constants.gOutputContentTypeRows];
 // Provided by the user when creating a new database connection
 // See the links below for more info:
 //  https://github.com/patriksimek/node-mssql#configuration-1
-//  http://pekim.github.io/tedious/api-connection.html
+//  http://tediousjs.github.io/tedious/api-connection.html
 export interface IConnectionCredentials
 {
 	server: string;
 	database: string;
+    domain: string;
 	user: string;
 	password: string;
 	port: number;
@@ -40,6 +41,7 @@ export interface IConnectionCredentialsQuickPickItem extends vscode.QuickPickIte
 export interface IConnectionProperties
 {
 	serverVersion: string;
+    currentDomain: string;
 	currentUser: string;
 	currentDatabase: string;
 };
