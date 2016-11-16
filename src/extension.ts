@@ -9,12 +9,15 @@ let controller: MainController = undefined;
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext)
 {
-    controller = new MainController(context);
-	context.subscriptions.push(controller);
-	controller.activate();
-    const extensionUpgradeMessage = 'This extension is not actively maintained. Install the official mssql extension from the Marketplace.';
-    vscode.window.showInformationMessage(extensionUpgradeMessage, 'Go to Marketplace' ).then(selected => {
-        if (selected === 'Go to Marketplace') {
+    // Don't initialize the controller & commands - display the info message and do nothing
+    //
+    // controller = new MainController(context);
+	// context.subscriptions.push(controller);
+	// controller.activate();
+
+    const extensionUpgradeMessage = "This prototype is deprecated. Get Microsoft's official 'mssql' extension from the VS Code Marketplace.";
+    vscode.window.showInformationMessage(extensionUpgradeMessage, 'Go to VS Code Marketplace' ).then(selected => {
+        if (selected === 'Go to VS Code Marketplace') {
             open('https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql');
         }
     });

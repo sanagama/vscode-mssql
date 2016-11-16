@@ -1,7 +1,9 @@
-# Microsoft SQL Server support in VS Code [Prototype]
+# [*Prototype deprecated*] Microsoft SQL Server support in VS Code
 
-## This extension is not actively maintained. Install the [mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) extension from Microsoft instead of this one.
+## **__This *prototype* is deprecated__**
+## **__Get the official [mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) extension for VS Code from Microsoft instead.__**
 
+### This source code will continue to exist in this repo but will not be actively maintained.
 
 ## What is it?
 This extension is a proof of concept that adds MSSQL support to Visual Studio Code and let's you:
@@ -170,7 +172,7 @@ in workspace settings (`File->Preferences->Workspace Settings`).
 * Addressed [Issue 6](https://github.com/sanagama/vscode-mssql/issues/6). Added option to specify port in connection settings.
 
 ### Version 0.0.5:
-* This extension is not actively maintained. Install the [mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) extension from Microsoft instead of this one.
+* Added note: This *prototype* is deprecated. Get the official [mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) extension from Microsoft instead.
 
 ## Acknowledgements
 The extension uses several open source components including:
