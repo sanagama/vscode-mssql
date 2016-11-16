@@ -1,7 +1,6 @@
 # [*Prototype deprecated*] Microsoft SQL Server support in VS Code
 
-## **__This *prototype* is deprecated__**
-## **__Get the official [mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) extension for VS Code from Microsoft instead.__**
+## **__This *prototype* is deprecated. Get the official [mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) extension for VS Code from Microsoft.__**
 
 ### This source code will continue to exist in this repo but will not be actively maintained.
 
