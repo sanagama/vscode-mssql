@@ -1,6 +1,9 @@
-# Microsoft SQL Server support in VS Code
+# Microsoft SQL Server support in VS Code [Prototype]
 
-##What is it?
+## This extension is not actively maintained. Install the [mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) extension from Microsoft instead of this one.
+
+
+## What is it?
 This extension is a proof of concept that adds MSSQL support to Visual Studio Code and let's you:
 * Connect to your database in [SQL Server](https://aka.ms/sqlserver) running on-premises or in the cloud, [Azure SQL Database](https://aka.ms/sqldb) and [Azure SQL Data Warehouse](https://aka.ms/sqldw)
 * Type T-SQL statements, scripts and queries in the Visual Studio Code editor window
@@ -9,10 +12,10 @@ This extension is a proof of concept that adds MSSQL support to Visual Studio Co
 
 Head over to [Github](https://github.com/sanagama/vscode-mssql) for the source code, bug tracking, and feature requests.
 
-##Screenshots
+## Screenshots
 ![IDE](images/vscode-mssql-demo.gif)
 
-##Supported features
+## Supported features
 * Loads your connections from [VS Code User or Workspace settings](https://code.visualstudio.com/Docs/customization/userandworkspace)
 * Get started with T-SQL Snippets
 * Execute T-SQL scripts (selected T-SQL text vs. everything in the editor)
@@ -25,10 +28,10 @@ Head over to [Github](https://github.com/sanagama/vscode-mssql) for the source c
 
 >*Note:* Only SQL authentication is supported at this time. Windows Authentication is not yet supported.
 
-##Usage
+## Usage
 First, download and install Visual Studio Code `1.0` (or later) for your platform from here: [download Visual Studio Code](https://code.visualstudio.com/#alt-downloads)
 
-###Installing the extension
+### Installing the extension
 1. Launch Visual Studio Code
 2. Press `F1` to open the command palette
 3. Type `ext ins` and click `Install extension`
@@ -36,7 +39,7 @@ First, download and install Visual Studio Code `1.0` (or later) for your platfor
 5. Visual Studio Code will show you a message confirming successful installation
 6. Restart Visual Studio Code when prompted
 
-###Using the extension
+### Using the extension
 1. *Add connections:* Open VS Code User settings (`File->Preferences->User Settings`) or Workspace settings (`File->Preferences->Workspace Settings`) and add your connections (see `Options` below for format)
 2. *Change language mode to SQL:* Open a `.sql` file or press `Ctrl+K M` (`Cmd+K M` on Mac) switch the language mode of the active editor to `SQL`
 3. *Connect to a database:* Press `F1` to open the command palette, type `mssql` then click `Connect to a database` and follow the prompts
@@ -47,13 +50,13 @@ First, download and install Visual Studio Code `1.0` (or later) for your platfor
 
 >*Tip:* Put `GO` on a line by itself to separate T-SQL batches.
 
-###Commands
+### Commands
 The extension provides a few commands in the VS Code command palette:
 * `MSSQL: Connect to a database` - loads your connections from user or workspace settings and shows them in a picklist for you to choose one. Also prompts you for any missing required information when you connect.
 * `MSSQL: Run T-SQL query` - executes T-SQL statements (selected T-SQL text vs. everything in the editor) and displays results
 * `MSSQL: Disconnect active connection` - disconnects from the database
 
-###Options
+### Options
 Put your connections in VS Code User settings (`File->Preferences->User Settings`) or in Workspace settings (`File->Preferences->Workspace Settings`) in the format below.
 The command `MSSQL: Connect to a database` loads these connections, shows them in a picklist, and prompts you to enter any missing required information when you connect.
 
@@ -145,7 +148,7 @@ in workspace settings (`File->Preferences->Workspace Settings`).
 }
 ```
 
-###Uninstalling the extension
+### Uninstalling the extension
 1. Launch Visual Studio Code
 2. Press `F1` to open the command palette
 3. Type `ext show` and click `Show installed extensions`
@@ -153,18 +156,21 @@ in workspace settings (`File->Preferences->Workspace Settings`).
 4. Click `OK` when Visual Studio Code prompts for confirmation
 5. Restart Visual Studio Code when prompted
 
-##ChangeLog
-###Version 0.0.2:
+## ChangeLog
+### Version 0.0.2:
 * initial commit
 
-###Version 0.0.3:
+### Version 0.0.3:
 * stop showing welcome message in MSSQL output channel when extension loads
 * cleaned up various messages
 * enable commands *Connect to a database* and *Disconnect active connection* even when a .sql file is not open in an editor
 * load connections from VS Code User settings or Workspace settings and show them in the connection picklist across VS Code sessions
 
-###Version 0.0.4:
+### Version 0.0.4:
 * Addressed [Issue 6](https://github.com/sanagama/vscode-mssql/issues/6). Added option to specify port in connection settings.
+
+### Version 0.0.5:
+* This extension is not actively maintained. Install the [mssql](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) extension from Microsoft instead of this one.
 
 ## Acknowledgements
 The extension uses several open source components including:
