@@ -13,6 +13,10 @@ export function fixupConnectionCredentials(connCreds: Interfaces.IConnectionCred
         connCreds.database = "";
     }
 
+    if(!connCreds.domain) {
+        connCreds.domain = "";
+    }
+
     if(!connCreds.user) {
         connCreds.user = "";
     }
