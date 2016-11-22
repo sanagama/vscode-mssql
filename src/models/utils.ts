@@ -2,21 +2,6 @@
 import vscode = require('vscode');
 import Constants = require('./constants');
 
-// Return 'true' if the active editor window has a .sql file, false otherwise
-export function isEditingSqlFile()
-{
-    let sqlFile = false;
-    let editor = getActiveTextEditor();
-    if(editor)
-    {
-        if (editor.document.languageId == Constants.gLanguageId)
-        {
-            sqlFile = true;
-        }
-    }
-    return sqlFile;
-}
-
 // Return the active text editor if there's one
 export function getActiveTextEditor()
 {
